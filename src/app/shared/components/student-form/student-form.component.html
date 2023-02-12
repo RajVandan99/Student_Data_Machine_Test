@@ -1,0 +1,49 @@
+<div class="row">
+    <div class="col-md-8 offset-md-2">
+        <mat-card>
+            <mat-card-title class="mb-4">
+                Add Student Data
+            </mat-card-title>
+            <form (ngSubmit)="onStudentForm()" #studentForm="ngForm">
+                <mat-card-content class="formLogin">
+                    <mat-form-field appearance="fill"> 
+                        <mat-label>Username</mat-label>
+                        <input type="text" matInput ngModel
+                                name="username" id="username"  
+                               placeholder="username" 
+                              >
+                    </mat-form-field>
+                    <mat-form-field appearance="fill"> 
+                        <mat-label>Password</mat-label>
+                        <input type="text" matInput ngModel  
+                               [minlength]="8" name="password" id="password" 
+                               placeholder="Password"  >
+                    </mat-form-field> 
+                   
+                    <ng-container *ngFor="let gender of genders">
+                        <mat-radio-group 
+                    aria-label="Select an option">
+                        <mat-radio-button
+                        value="gender" [id]="gender" 
+                        [ngModel]="gender" name="gender" >{{gender}}</mat-radio-button>
+                    </mat-radio-group>
+                    </ng-container>
+                    <mat-form-field appearance="fill"> 
+                        <mat-label>Contact</mat-label>
+                        <input type="text" matInput ngModel
+                                name="contact" id="contact"  
+                               placeholder="contact">
+                    </mat-form-field>
+                </mat-card-content>
+                <mat-card-actions>
+                    <button *ngIf="!isUpdate" type="submit" mat-raised-button color="primary" class="ml-2">
+                        Submit Student Form
+                    </button>
+                    <button *ngIf="isUpdate" (click)="onStdDataUpdate(studentForm.value)" type="button" mat-raised-button color="primary" class="ml-2">
+                        Update Student Form
+                    </button>
+                </mat-card-actions>
+            </form>
+        </mat-card>
+    </div>
+</div>
